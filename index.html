@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BAD STORE - المتجر الإلكتروني</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0F172A;
+            --secondary: #F8FAFC;
+            --accent: #7C3AED;
+            --dark: #1E293B;
+            --light: #FFFFFF;
+            --gray: #E2E8F0;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        body {
+            background-color: var(--secondary);
+            color: var(--dark);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* أنماط التسجيل/الدخول */
+        .auth-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .auth-form {
+            background: var(--light);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        
+        .auth-form h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--gray);
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .auth-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        .auth-btn:hover {
+            background-color: #6D28D9;
+        }
+        
+        .auth-link {
+            text-align: center;
+            margin-top: 15px;
+        }
+        
+        .auth-link a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="app">
+            <!-- المحتوى سيتم تحميله ديناميكيًا -->
+            <div class="auth-container" id="auth-view">
+                <div class="auth-form" id="login-form">
+                    <h2>تسجيل الدخول</h2>
+                    <div class="form-group">
+                        <label>البريد الإلكتروني</label>
+                        <input type="email" id="login-email" placeholder="أدخل بريدك الإلكتروني">
+                    </div>
+                    <div class="form-group">
+                        <label>كلمة المرور</label>
+                        <input type="password" id="login-password" placeholder="أدخل كلمة المرور">
+                    </div>
+                    <button class="auth-btn" onclick="login()">تسجيل الدخول</button>
+                    <div class="auth-link">
+                        ليس لديك حساب؟ <a href="#" onclick="showRegister()">إنشاء حساب</a>
+                    </div>
+                </div>
+                
+                <div class="auth-form" id="register-form" style="display: none;">
+                    <h2>إنشاء حساب جديد</h2>
+                    <div class="form-group">
+                        <label>الاسم الكامل</label>
+                        <input type="text" id="register-name" placeholder="أدخل اسمك الكامل">
+                    </div>
+                    <div class="form-group">
+                        <label>البريد الإلكتروني</label>
+                        <input type="email" id="register-email" placeholder="أدخل بريدك الإلكتروني">
+                    </div>
+                    <div class="form-group">
+                        <label>كلمة المرور</label>
+                        <input type="password" id="register-password" placeholder="أدخل كلمة المرور">
+                    </div>
+                    <div class="form-group">
+                        <label>الدولة</label>
+                        <input type="text" id="register-country" placeholder="أدخل دولتك">
+                    </div>
+                    <button class="auth-btn" onclick="register()">إنشاء حساب</button>
+                    <div class="auth-link">
+                        لديك حساب بالفعل؟ <a href="#" onclick="showLogin()">تسجيل الدخول</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="dashboard" style="display: none;">
+                <!-- لوحة التحكم سيتم تحميلها بعد التسجيل -->
+            </div>
+        </div>
+    </div>
+
+    <!-- الخلفية (Backend) مدمجة في هذا الملف -->
+    <script>
+        // ============== الجزء الخلفي (Backend) ==============
+        const backend = {
+            users: JSON.parse(localStorage.getItem('users')) || [],
+            products: [
+                { id: 1, name: "فري فاير", price: 100 },
+                { id: 2, name: "فورتنايت", price: 150 },
+                { id: 3, name: "ببجي", price: 120 }
+            ],
+            orders: JSON.parse(localStorage.getItem('orders')) || [],
+            
+            // تسجيل مستخدم جديد
+            register: function(user) {
+                const exists = this.users.some(u => u.email === user.email);
+                if (exists) {
+                    return { success: false, message: "البريد الإلكتروني مسجل بالفعل" };
+                }
+                
+                user.id = Date.now();
+                user.wallet = 0;
+                user.role = 'user';
+                this.users.push(user);
+                localStorage.setItem('users', JSON.stringify(this.users));
+                
+                return { success: true, user };
+            },
+            
+            // تسجيل الدخول
+            login: function(email, password) {
+                const user = this.users.find(u => u.email === email && u.password === password);
+                if (!user) {
+                    return { success: false, message: "البريد الإلكتروني أو كلمة المرور غير صحيحة" };
+                }
+                
+                return { success: true, user };
+            },
+            
+            // جلب المنتجات
+            getProducts: function() {
+                return this.products;
+            },
+            
+            // إنشاء طلب جديد
+            createOrder: function(order) {
+                order.id = Date.now();
+                order.status = 'pending';
+                order.createdAt = new Date().toISOString();
+                this.orders.push(order);
+                localStorage.setItem('orders', JSON.stringify(this.orders));
+                
+                return { success: true, order };
+            }
+        };
+
+        // ============== الجزء الأمامي (Frontend) ==============
+        let currentUser = null;
+        
+        function showRegister() {
+            document.getElementById('login-form').style.display = 'none';
+            document.getElementById('register-form').style.display = 'block';
+        }
+        
+        function showLogin() {
+            document.getElementById('register-form').style.display = 'none';
+            document.getElementById('login-form').style.display = 'block';
+        }
+        
+        function register() {
+            const user = {
+                name: document.getElementById('register-name').value,
+                email: document.getElementById('register-email').value,
+                password: document.getElementById('register-password').value,
+                country: document.getElementById('register-country').value
+            };
+            
+            const result = backend.register(user);
+            if (result.success) {
+                alert("تم إنشاء الحساب بنجاح!");
+                showLogin();
+            } else {
+                alert(result.message);
+            }
+        }
+        
+        function login() {
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            
+            const result = backend.login(email, password);
+            if (result.success) {
+                currentUser = result.user;
+                showDashboard();
+            } else {
+                alert(result.message);
+            }
+        }
+        
+        function showDashboard() {
+            document.getElementById('auth-view').style.display = 'none';
+            document.getElementById('dashboard').style.display = 'block';
+            
+            // إنشاء لوحة التحكم ديناميكيًا
+            document.getElementById('dashboard').innerHTML = `
+                <div style="text-align: center; margin-top: 50px;">
+                    <h1>مرحبًا ${currentUser.name}!</h1>
+                    <p>رصيد محفظتك: ${currentUser.wallet} ج.س</p>
+                    
+                    <h2 style="margin-top: 30px;">المنتجات المتاحة</h2>
+                    <div id="products" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; margin-top: 20px;"></div>
+                </div>
+            `;
+            
+            // عرض المنتجات
+            const products = backend.getProducts();
+            const productsContainer = document.getElementById('products');
+            products.forEach(product => {
+                productsContainer.innerHTML += `
+                    <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.1));">
+                        <h3>${product.name}</h3>
+                        <p>السعر: ${product.price} ج.س</p>
+                        <button onclick="buyProduct(${product.id})" style="background: var(--accent); color: white; border: none; padding: 8px 15px; border-radius: 5px; margin-top: 10px; cursor: pointer;">شراء الآن</button>
+                    </div>
+                `;
+            });
+        }
+        
+        function buyProduct(productId) {
+            const product = backend.products.find(p => p.id === productId);
+            if (!product) return;
+            
+            if (confirm(`هل تريد شراء ${product.name} بسعر ${product.price} ج.س؟`)) {
+                const order = {
+                    userId: currentUser.id,
+                    productId: product.id,
+                    productName: product.name,
+                    price: product.price,
+                    status: 'pending'
+                };
+                
+                const result = backend.createOrder(order);
+                if (result.success) {
+                    alert(`تم إنشاء طلبك بنجاح! رقم الطلب: ${result.order.id}`);
+                } else {
+                    alert("حدث خطأ أثناء إنشاء الطلب");
+                }
+            }
+        }
+        
+        // تهيئة التطبيق
+        if (localStorage.getItem('currentUser')) {
+            currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            showDashboard();
+        }
+    </script>
+</body>
+  </html>
