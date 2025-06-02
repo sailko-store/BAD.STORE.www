@@ -3,20 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BAD STORE - المتجر الإلكتروني</title>
+    <title>فري فاير شحن - FF Top Up</title>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #0F172A;
-            --secondary: #F8FAFC;
-            --accent: #7C3AED;
-            --dark: #1E293B;
+            --primary: #D72323;
+            --secondary: #F5F5F5;
+            --accent: #FFD700;
+            --dark: #333333;
             --light: #FFFFFF;
-            --gray: #E2E8F0;
-            --success: #10B981;
-            --warning: #F59E0B;
-            --danger: #EF4444;
+            --success: #28a745;
         }
         
         * {
@@ -37,16 +34,229 @@
             padding: 20px;
         }
         
-        /* أنماط التسجيل/الدخول */
+        /* شريط التنقل */
+        .navbar {
+            background-color: var(--primary);
+            color: var(--light);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo img {
+            height: 40px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        /* قسم الهيرو */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://i.ibb.co/0jQ5z0T/freefire-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            color: var(--light);
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--dark);
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #ffc107;
+            transform: translateY(-3px);
+        }
+        
+        /* قسم الشحن */
+        .topup-section {
+            padding: 50px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 36px;
+            color: var(--primary);
+        }
+        
+        .topup-form {
+            background-color: var(--light);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 30px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .form-submit {
+            background-color: var(--primary);
+            color: var(--light);
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .form-submit:hover {
+            background-color: #c11f1f;
+        }
+        
+        /* الأسعار */
+        .pricing {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+        
+        .price-card {
+            background-color: var(--light);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s;
+            border-top: 4px solid var(--primary);
+        }
+        
+        .price-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .price-card h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .price-card .price {
+            font-size: 28px;
+            font-weight: bold;
+            margin: 15px 0;
+            color: var(--dark);
+        }
+        
+        .price-card .btn {
+            display: block;
+            margin-top: 15px;
+        }
+        
+        /* الفوتر */
+        .footer {
+            background-color: var(--dark);
+            color: var(--light);
+            padding: 30px 0;
+            text-align: center;
+            margin-top: 50px;
+        }
+        
+        /* لوحة التحكم */
+        .dashboard {
+            display: none;
+            margin-top: 50px;
+        }
+        
+        .user-info {
+            background-color: var(--light);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .wallet-balance {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 10px 0;
+        }
+        
+        .transactions {
+            background-color: var(--light);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* نظام الدخول */
         .auth-container {
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            min-height: 60vh;
         }
         
         .auth-form {
-            background: var(--light);
+            background-color: var(--light);
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
@@ -60,38 +270,8 @@
             color: var(--primary);
         }
         
-        .form-group {
-            margin-bottom: 15px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 500;
-        }
-        
-        .form-group input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid var(--gray);
-            border-radius: 5px;
-            font-size: 16px;
-        }
-        
-        .auth-btn {
-            width: 100%;
-            padding: 12px;
-            background-color: var(--accent);
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-        
-        .auth-btn:hover {
-            background-color: #6D28D9;
+        .auth-form .form-submit {
+            margin-top: 20px;
         }
         
         .auth-link {
@@ -100,217 +280,532 @@
         }
         
         .auth-link a {
-            color: var(--accent);
+            color: var(--primary);
             text-decoration: none;
+        }
+        
+        /* تجاوبية */
+        @media (max-width: 768px) {
+            .navbar .container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div id="app">
-            <!-- المحتوى سيتم تحميله ديناميكيًا -->
-            <div class="auth-container" id="auth-view">
-                <div class="auth-form" id="login-form">
-                    <h2>تسجيل الدخول</h2>
-                    <div class="form-group">
-                        <label>البريد الإلكتروني</label>
-                        <input type="email" id="login-email" placeholder="أدخل بريدك الإلكتروني">
-                    </div>
-                    <div class="form-group">
-                        <label>كلمة المرور</label>
-                        <input type="password" id="login-password" placeholder="أدخل كلمة المرور">
-                    </div>
-                    <button class="auth-btn" onclick="login()">تسجيل الدخول</button>
-                    <div class="auth-link">
-                        ليس لديك حساب؟ <a href="#" onclick="showRegister()">إنشاء حساب</a>
-                    </div>
+    <!-- شريط التنقل -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <img src="https://i.ibb.co/0jQ5z0T/freefire-bg.jpg" alt="Free Fire Logo">
+                <span>شحن فري فاير</span>
+            </div>
+            <div class="nav-links">
+                <a href="#" id="home-link">الرئيسية</a>
+                <a href="#" id="topup-link">الشحن</a>
+                <a href="#" id="pricing-link">الأسعار</a>
+                <a href="#" id="login-link">تسجيل الدخول</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- قسم الهيرو -->
+    <section class="hero" id="home-section">
+        <div class="container">
+            <h1>شحن رصيد فري فاير بسرعة وسهولة</h1>
+            <p>احصل على الماسات والبطاقات في دقائق معدودة بأفضل الأسعار وأسرع خدمة</p>
+            <a href="#" class="btn" id="hero-topup-btn">شحن الآن</a>
+        </div>
+    </section>
+
+    <!-- قسم الشحن -->
+    <section class="topup-section" id="topup-section" style="display: none;">
+        <div class="container">
+            <h2 class="section-title">شحن رصيد فري فاير</h2>
+            <div class="topup-form">
+                <div class="form-group">
+                    <label for="player-id">معرف اللاعب (Player ID)</label>
+                    <input type="text" id="player-id" placeholder="أدخل معرف اللاعب (مثال: 1234567890)">
                 </div>
-                
-                <div class="auth-form" id="register-form" style="display: none;">
-                    <h2>إنشاء حساب جديد</h2>
-                    <div class="form-group">
-                        <label>الاسم الكامل</label>
-                        <input type="text" id="register-name" placeholder="أدخل اسمك الكامل">
-                    </div>
-                    <div class="form-group">
-                        <label>البريد الإلكتروني</label>
-                        <input type="email" id="register-email" placeholder="أدخل بريدك الإلكتروني">
-                    </div>
-                    <div class="form-group">
-                        <label>كلمة المرور</label>
-                        <input type="password" id="register-password" placeholder="أدخل كلمة المرور">
-                    </div>
-                    <div class="form-group">
-                        <label>الدولة</label>
-                        <input type="text" id="register-country" placeholder="أدخل دولتك">
-                    </div>
-                    <button class="auth-btn" onclick="register()">إنشاء حساب</button>
-                    <div class="auth-link">
-                        لديك حساب بالفعل؟ <a href="#" onclick="showLogin()">تسجيل الدخول</a>
-                    </div>
+                <div class="form-group">
+                    <label for="server">السيرفر</label>
+                    <select id="server">
+                        <option value="mena">السيرفر العربي (MENA)</option>
+                        <option value="europe">أوروبا</option>
+                        <option value="asia">آسيا</option>
+                        <option value="north-america">أمريكا الشمالية</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="amount">المبلغ (بالدولار)</label>
+                    <select id="amount">
+                        <option value="5">5 دولار - 500 ماسة</option>
+                        <option value="10">10 دولار - 1100 ماسة</option>
+                        <option value="20">20 دولار - 2400 ماسة</option>
+                        <option value="50">50 دولار - 6500 ماسة</option>
+                        <option value="100">100 دولار - 14000 ماسة</option>
+                    </select>
+                </div>
+                <button class="form-submit" id="submit-topup">تأكيد الشحن</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الأسعار -->
+    <section class="topup-section" id="pricing-section" style="display: none;">
+        <div class="container">
+            <h2 class="section-title">باقات الشحن</h2>
+            <div class="pricing">
+                <div class="price-card">
+                    <h3>الباقة الأساسية</h3>
+                    <p>500 ماسة</p>
+                    <div class="price">5 دولار</div>
+                    <a href="#" class="btn" data-amount="5">شحن الآن</a>
+                </div>
+                <div class="price-card">
+                    <h3>الباقة المتوسطة</h3>
+                    <p>1100 ماسة</p>
+                    <div class="price">10 دولار</div>
+                    <a href="#" class="btn" data-amount="10">شحن الآن</a>
+                </div>
+                <div class="price-card">
+                    <h3>الباقة المميزة</h3>
+                    <p>2400 ماسة</p>
+                    <div class="price">20 دولار</div>
+                    <a href="#" class="btn" data-amount="20">شحن الآن</a>
+                </div>
+                <div class="price-card">
+                    <h3>الباقة الذهبية</h3>
+                    <p>6500 ماسة</p>
+                    <div class="price">50 دولار</div>
+                    <a href="#" class="btn" data-amount="50">شحن الآن</a>
                 </div>
             </div>
-            
-            <div id="dashboard" style="display: none;">
-                <!-- لوحة التحكم سيتم تحميلها بعد التسجيل -->
+        </div>
+    </section>
+
+    <!-- لوحة التحكم -->
+    <div class="container dashboard" id="dashboard-section">
+        <div class="user-info">
+            <h2>مرحبًا, <span id="user-name"></span></h2>
+            <p>رصيد محفظتك:</p>
+            <div class="wallet-balance">$<span id="wallet-amount">0</span></div>
+            <button class="btn" id="add-funds-btn" style="margin-top: 10px;">إضافة رصيد</button>
+        </div>
+        
+        <h2 style="margin-bottom: 20px;">عمليات الشحن السابقة</h2>
+        <div class="transactions">
+            <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr style="background-color: var(--primary); color: white;">
+                        <th style="padding: 10px; text-align: right;">رقم العملية</th>
+                        <th style="padding: 10px; text-align: right;">معرف اللاعب</th>
+                        <th style="padding: 10px; text-align: right;">المبلغ</th>
+                        <th style="padding: 10px; text-align: right;">الحالة</th>
+                        <th style="padding: 10px; text-align: right;">التاريخ</th>
+                    </tr>
+                </thead>
+                <tbody id="transactions-list">
+                    <!-- سيتم ملؤها بالبيانات -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- نظام الدخول -->
+    <div class="container auth-container" id="auth-section" style="display: none;">
+        <div class="auth-form" id="login-form">
+            <h2>تسجيل الدخول</h2>
+            <div class="form-group">
+                <label for="login-email">البريد الإلكتروني</label>
+                <input type="email" id="login-email" placeholder="أدخل بريدك الإلكتروني">
+            </div>
+            <div class="form-group">
+                <label for="login-password">كلمة المرور</label>
+                <input type="password" id="login-password" placeholder="أدخل كلمة المرور">
+            </div>
+            <button class="form-submit" id="login-btn">تسجيل الدخول</button>
+            <div class="auth-link">
+                ليس لديك حساب؟ <a href="#" id="show-register">إنشاء حساب</a>
+            </div>
+        </div>
+        
+        <div class="auth-form" id="register-form" style="display: none;">
+            <h2>إنشاء حساب جديد</h2>
+            <div class="form-group">
+                <label for="register-name">الاسم الكامل</label>
+                <input type="text" id="register-name" placeholder="أدخل اسمك الكامل">
+            </div>
+            <div class="form-group">
+                <label for="register-email">البريد الإلكتروني</label>
+                <input type="email" id="register-email" placeholder="أدخل بريدك الإلكتروني">
+            </div>
+            <div class="form-group">
+                <label for="register-password">كلمة المرور</label>
+                <input type="password" id="register-password" placeholder="أدخل كلمة المرور">
+            </div>
+            <div class="form-group">
+                <label for="register-phone">رقم الهاتف</label>
+                <input type="text" id="register-phone" placeholder="أدخل رقم الهاتف">
+            </div>
+            <button class="form-submit" id="register-btn">إنشاء حساب</button>
+            <div class="auth-link">
+                لديك حساب بالفعل؟ <a href="#" id="show-login">تسجيل الدخول</a>
             </div>
         </div>
     </div>
 
-    <!-- الخلفية (Backend) مدمجة في هذا الملف -->
-    <script>
-        // ============== الجزء الخلفي (Backend) ==============
-        const backend = {
-            users: JSON.parse(localStorage.getItem('users')) || [],
-            products: [
-                { id: 1, name: "فري فاير", price: 100 },
-                { id: 2, name: "فورتنايت", price: 150 },
-                { id: 3, name: "ببجي", price: 120 }
-            ],
-            orders: JSON.parse(localStorage.getItem('orders')) || [],
-            
-            // تسجيل مستخدم جديد
-            register: function(user) {
-                const exists = this.users.some(u => u.email === user.email);
-                if (exists) {
-                    return { success: false, message: "البريد الإلكتروني مسجل بالفعل" };
-                }
-                
-                user.id = Date.now();
-                user.wallet = 0;
-                user.role = 'user';
-                this.users.push(user);
-                localStorage.setItem('users', JSON.stringify(this.users));
-                
-                return { success: true, user };
-            },
-            
-            // تسجيل الدخول
-            login: function(email, password) {
-                const user = this.users.find(u => u.email === email && u.password === password);
-                if (!user) {
-                    return { success: false, message: "البريد الإلكتروني أو كلمة المرور غير صحيحة" };
-                }
-                
-                return { success: true, user };
-            },
-            
-            // جلب المنتجات
-            getProducts: function() {
-                return this.products;
-            },
-            
-            // إنشاء طلب جديد
-            createOrder: function(order) {
-                order.id = Date.now();
-                order.status = 'pending';
-                order.createdAt = new Date().toISOString();
-                this.orders.push(order);
-                localStorage.setItem('orders', JSON.stringify(this.orders));
-                
-                return { success: true, order };
-            }
-        };
+    <!-- الفوتر -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2023 شحن فري فاير - جميع الحقوق محفوظة</p>
+            <p>هذا الموقع غير مرتبط بـ Garena أو Free Fire رسميًا</p>
+        </div>
+    </footer>
 
-        // ============== الجزء الأمامي (Frontend) ==============
+    <!-- الجزء الخلفي (Backend) -->
+    <script>
+        // ============== قاعدة البيانات ==============
+        let users = JSON.parse(localStorage.getItem('ff_users')) || [];
+        let transactions = JSON.parse(localStorage.getItem('ff_transactions')) || [];
         let currentUser = null;
         
-        function showRegister() {
-            document.getElementById('login-form').style.display = 'none';
-            document.getElementById('register-form').style.display = 'block';
-        }
-        
-        function showLogin() {
-            document.getElementById('register-form').style.display = 'none';
-            document.getElementById('login-form').style.display = 'block';
-        }
-        
-        function register() {
-            const user = {
-                name: document.getElementById('register-name').value,
-                email: document.getElementById('register-email').value,
-                password: document.getElementById('register-password').value,
-                country: document.getElementById('register-country').value
+        // ============== إدارة الحساب ==============
+        function registerUser(name, email, password, phone) {
+            const userExists = users.some(user => user.email === email);
+            if (userExists) {
+                return { success: false, message: 'البريد الإلكتروني مسجل بالفعل' };
+            }
+            
+            const newUser = {
+                id: Date.now(),
+                name,
+                email,
+                password,
+                phone,
+                wallet: 0,
+                createdAt: new Date().toISOString()
             };
             
-            const result = backend.register(user);
-            if (result.success) {
-                alert("تم إنشاء الحساب بنجاح!");
-                showLogin();
-            } else {
-                alert(result.message);
-            }
+            users.push(newUser);
+            localStorage.setItem('ff_users', JSON.stringify(users));
+            
+            return { success: true, user: newUser };
         }
         
-        function login() {
-            const email = document.getElementById('login-email').value;
-            const password = document.getElementById('login-password').value;
-            
-            const result = backend.login(email, password);
-            if (result.success) {
-                currentUser = result.user;
-                showDashboard();
-            } else {
-                alert(result.message);
+        function loginUser(email, password) {
+            const user = users.find(user => user.email === email && user.password === password);
+            if (!user) {
+                return { success: false, message: 'البريد الإلكتروني أو كلمة المرور غير صحيحة' };
             }
+            
+            return { success: true, user };
         }
         
-        function showDashboard() {
-            document.getElementById('auth-view').style.display = 'none';
-            document.getElementById('dashboard').style.display = 'block';
+        function addFunds(userId, amount) {
+            const user = users.find(user => user.id === userId);
+            if (!user) return false;
             
-            // إنشاء لوحة التحكم ديناميكيًا
-            document.getElementById('dashboard').innerHTML = `
-                <div style="text-align: center; margin-top: 50px;">
-                    <h1>مرحبًا ${currentUser.name}!</h1>
-                    <p>رصيد محفظتك: ${currentUser.wallet} ج.س</p>
-                    
-                    <h2 style="margin-top: 30px;">المنتجات المتاحة</h2>
-                    <div id="products" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; margin-top: 20px;"></div>
-                </div>
-            `;
+            user.wallet += parseFloat(amount);
+            localStorage.setItem('ff_users', JSON.stringify(users));
             
-            // عرض المنتجات
-            const products = backend.getProducts();
-            const productsContainer = document.getElementById('products');
-            products.forEach(product => {
-                productsContainer.innerHTML += `
-                    <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.1));">
-                        <h3>${product.name}</h3>
-                        <p>السعر: ${product.price} ج.س</p>
-                        <button onclick="buyProduct(${product.id})" style="background: var(--accent); color: white; border: none; padding: 8px 15px; border-radius: 5px; margin-top: 10px; cursor: pointer;">شراء الآن</button>
-                    </div>
+            // تسجيل المعاملة
+            const transaction = {
+                id: Date.now(),
+                userId,
+                type: 'deposit',
+                amount: parseFloat(amount),
+                status: 'completed',
+                date: new Date().toISOString()
+            };
+            
+            transactions.push(transaction);
+            localStorage.setItem('ff_transactions', JSON.stringify(transactions));
+            
+            return true;
+        }
+        
+        function processTopUp(userId, playerId, server, amount) {
+            const user = users.find(user => user.id === userId);
+            if (!user || user.wallet < amount) {
+                return { success: false, message: 'رصيدك غير كافي' };
+            }
+            
+            user.wallet -= amount;
+            localStorage.setItem('ff_users', JSON.stringify(users));
+            
+            // تسجيل عملية الشحن
+            const transaction = {
+                id: Date.now(),
+                userId,
+                playerId,
+                server,
+                amount,
+                type: 'topup',
+                status: 'pending',
+                date: new Date().toISOString()
+            };
+            
+            transactions.push(transaction);
+            localStorage.setItem('ff_transactions', JSON.stringify(transactions));
+            
+            // في الواقع هنا سيتم الاتصال ببوابة الدفع أو API الشحن
+            setTimeout(() => {
+                transaction.status = 'completed';
+                localStorage.setItem('ff_transactions', JSON.stringify(transactions));
+            }, 3000);
+            
+            return { success: true, transaction };
+        }
+        
+        function getUserTransactions(userId) {
+            return transactions.filter(t => t.userId === userId).reverse();
+        }
+        
+        // ============== إدارة الواجهة ==============
+        function showSection(sectionId) {
+            document.querySelectorAll('section, .auth-container, .dashboard').forEach(el => {
+                el.style.display = 'none';
+            });
+            
+            document.getElementById(sectionId).style.display = 'block';
+        }
+        
+        function updateDashboard() {
+            if (!currentUser) return;
+            
+            document.getElementById('user-name').textContent = currentUser.name;
+            document.getElementById('wallet-amount').textContent = currentUser.wallet.toFixed(2);
+            
+            const transactionsList = document.getElementById('transactions-list');
+            transactionsList.innerHTML = '';
+            
+            const userTransactions = getUserTransactions(currentUser.id);
+            
+            if (userTransactions.length === 0) {
+                transactionsList.innerHTML = '<tr><td colspan="5" style="padding: 20px; text-align: center;">لا توجد عمليات سابقة</td></tr>';
+                return;
+            }
+            
+            userTransactions.forEach(trans => {
+                const row = document.createElement('tr');
+                row.style.borderBottom = '1px solid #ddd';
+                
+                let statusColor = '';
+                if (trans.status === 'completed') statusColor = 'color: var(--success);';
+                else if (trans.status === 'pending') statusColor = 'color: var(--warning);';
+                else statusColor = 'color: var(--danger);';
+                
+                row.innerHTML = `
+                    <td style="padding: 10px;">#${trans.id}</td>
+                    <td style="padding: 10px;">${trans.playerId || '-'}</td>
+                    <td style="padding: 10px;">$${trans.amount.toFixed(2)}</td>
+                    <td style="padding: 10px; ${statusColor}">${trans.status === 'completed' ? 'مكتمل' : trans.status === 'pending' ? 'قيد المعالجة' : 'فشل'}</td>
+                    <td style="padding: 10px;">${new Date(trans.date).toLocaleString()}</td>
                 `;
+                
+                transactionsList.appendChild(row);
             });
         }
         
-        function buyProduct(productId) {
-            const product = backend.products.find(p => p.id === productId);
-            if (!product) return;
+        // ============== تفاعلات الصفحة ==============
+        document.getElementById('home-link').addEventListener('click', (e) => {
+            e.preventDefault();
+            showSection('home-section');
+        });
+        
+        document.getElementById('topup-link').addEventListener('click', (e) => {
+            e.preventDefault();
+            if (!currentUser) {
+                showSection('auth-section');
+                document.getElementById('login-form').style.display = 'block';
+                document.getElementById('register-form').style.display = 'none';
+                return;
+            }
+            showSection('topup-section');
+        });
+        
+        document.getElementById('pricing-link').addEventListener('click', (e) => {
+            e.preventDefault();
+            showSection('pricing-section');
+        });
+        
+        document.getElementById('login-link').addEventListener('click', (e) => {
+            e.preventDefault();
+            if (currentUser) {
+                currentUser = null;
+                updateUI();
+                showSection('home-section');
+                return;
+            }
+            showSection('auth-section');
+            document.getElementById('login-form').style.display = 'block';
+            document.getElementById('register-form').style.display = 'none';
+        });
+        
+        document.getElementById('hero-topup-btn').addEventListener('click', (e) => {
+            e.preventDefault();
+            if (!currentUser) {
+                showSection('auth-section');
+                document.getElementById('login-form').style.display = 'block';
+                document.getElementById('register-form').style.display = 'none';
+                return;
+            }
+            showSection('topup-section');
+        });
+        
+        document.getElementById('show-register').addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById('login-form').style.display = 'none';
+            document.getElementById('register-form').style.display = 'block';
+        });
+        
+        document.getElementById('show-login').addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById('register-form').style.display = 'none';
+            document.getElementById('login-form').style.display = 'block';
+        });
+        
+        document.getElementById('register-btn').addEventListener('click', () => {
+            const name = document.getElementById('register-name').value;
+            const email = document.getElementById('register-email').value;
+            const password = document.getElementById('register-password').value;
+            const phone = document.getElementById('register-phone').value;
             
-            if (confirm(`هل تريد شراء ${product.name} بسعر ${product.price} ج.س؟`)) {
-                const order = {
-                    userId: currentUser.id,
-                    productId: product.id,
-                    productName: product.name,
-                    price: product.price,
-                    status: 'pending'
-                };
-                
-                const result = backend.createOrder(order);
-                if (result.success) {
-                    alert(`تم إنشاء طلبك بنجاح! رقم الطلب: ${result.order.id}`);
-                } else {
-                    alert("حدث خطأ أثناء إنشاء الطلب");
+            if (!name || !email || !password || !phone) {
+                alert('الرجاء ملء جميع الحقول');
+                return;
+            }
+            
+            const result = registerUser(name, email, password, phone);
+            if (result.success) {
+                currentUser = result.user;
+                updateUI();
+                showSection('dashboard-section');
+                updateDashboard();
+            } else {
+                alert(result.message);
+            }
+        });
+        
+        document.getElementById('login-btn').addEventListener('click', () => {
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            
+            if (!email || !password) {
+                alert('الرجاء إدخال البريد الإلكتروني وكلمة المرور');
+                return;
+            }
+            
+            const result = loginUser(email, password);
+            if (result.success) {
+                currentUser = result.user;
+                updateUI();
+                showSection('dashboard-section');
+                updateDashboard();
+            } else {
+                alert(result.message);
+            }
+        });
+        
+        document.getElementById('add-funds-btn').addEventListener('click', () => {
+            const amount = prompt('أدخل المبلغ الذي تريد إضافته إلى محفظتك:');
+            if (!amount || isNaN(amount) || parseFloat(amount) <= 0) {
+                alert('الرجاء إدخال مبلغ صحيح');
+                return;
+            }
+            
+            if (addFunds(currentUser.id, parseFloat(amount))) {
+                currentUser.wallet += parseFloat(amount);
+                updateUI();
+                updateDashboard();
+                alert(`تم إضافة $${parseFloat(amount).toFixed(2)} إلى محفظتك بنجاح`);
+            } else {
+                alert('حدث خطأ أثناء إضافة الرصيد');
+            }
+        });
+        
+        document.getElementById('submit-topup').addEventListener('click', () => {
+            if (!currentUser) {
+                showSection('auth-section');
+                return;
+            }
+            
+            const playerId = document.getElementById('player-id').value;
+            const server = document.getElementById('server').value;
+            const amount = parseFloat(document.getElementById('amount').value);
+            
+            if (!playerId || playerId.length < 6) {
+                alert('الرجاء إدخال معرف لاعب صحيح');
+                return;
+            }
+            
+            if (currentUser.wallet < amount) {
+                alert('رصيدك غير كافي، الرجاء إضافة رصيد إلى محفظتك');
+                return;
+            }
+            
+            const result = processTopUp(currentUser.id, playerId, server, amount);
+            if (result.success) {
+                currentUser.wallet -= amount;
+                updateUI();
+                updateDashboard();
+                alert(`تم استلام طلب شحن ${amount} دولار للاعب ${playerId} بنجاح. سيتم شحن الرصيد خلال دقائق.`);
+                showSection('dashboard-section');
+            } else {
+                alert(result.message);
+            }
+        });
+        
+        // تفعيل أزرار الباقات
+        document.querySelectorAll('.price-card .btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (!currentUser) {
+                    showSection('auth-section');
+                    return;
                 }
+                
+                const amount = parseFloat(btn.getAttribute('data-amount'));
+                document.getElementById('amount').value = amount;
+                showSection('topup-section');
+            });
+        });
+        
+        function updateUI() {
+            const loginLink = document.getElementById('login-link');
+            if (currentUser) {
+                loginLink.textContent = 'تسجيل الخروج';
+                document.getElementById('dashboard-section').style.display = 'block';
+            } else {
+                loginLink.textContent = 'تسجيل الدخول';
+                document.getElementById('dashboard-section').style.display = 'none';
             }
         }
         
-        // تهيئة التطبيق
-        if (localStorage.getItem('currentUser')) {
-            currentUser = JSON.parse(localStorage.getItem('currentUser'));
-            showDashboard();
+        // التهيئة الأولية
+        function init() {
+            const savedUser = localStorage.getItem('ff_currentUser');
+            if (savedUser) {
+                currentUser = JSON.parse(savedUser);
+                updateUI();
+                showSection('dashboard-section');
+                updateDashboard();
+            } else {
+                showSection('home-section');
+            }
         }
+        
+        init();
     </script>
 </body>
-  </html>
+                  </html>
